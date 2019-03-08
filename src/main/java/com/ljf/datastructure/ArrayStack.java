@@ -4,8 +4,8 @@ package com.ljf.datastructure;
  * @author liujufu
  * @date 2019/2/28 15:57
  */
-public class ArrayStack<T> {
-    private Array<T> array;
+public class ArrayStack<E> implements Stack<E> {
+    private Array<E> array;
 
     public ArrayStack(int capacity){
         array = new Array<>(capacity);
@@ -15,15 +15,15 @@ public class ArrayStack<T> {
         this(10);
     }
 
-    public void push(T e){
+    public void push(E e){
         array.addLast(e);
     }
 
-    public void pop(){
-        array.removeLast();
+    public E pop(){
+        return array.removeLast();
     }
 
-    public T peek(){
+    public E peek(){
         return array.getLast();
     }
 
@@ -31,6 +31,9 @@ public class ArrayStack<T> {
         return array.getSize();
     }
 
+    public boolean isEmpty(){
+        return array.isEmpty();
+    }
     public int getCapacity(){
         return array.getCapacity();
     }

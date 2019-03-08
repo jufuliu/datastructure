@@ -4,8 +4,8 @@ package com.ljf.datastructure;
  * @author liujufu
  * @date 2019/2/28 16:11
  */
-public class ArrayQueue<T> {
-    private Array<T> array;
+public class ArrayQueue<E> implements Queue<E> {
+    private Array<E> array;
 
     public ArrayQueue(int capacity){
         array=new Array<>(capacity);
@@ -15,15 +15,15 @@ public class ArrayQueue<T> {
         this(10);
     }
 
-    public void enqueue(T e){
+    public void enqueue(E e){
         array.addFirst(e);
     }
 
-    public void dequeue(){
-        array.removeLast();
+    public E dequeue(){
+        return array.removeLast();
     }
 
-    public T getFront(){
+    public E getFront(){
         return array.getLast();
     }
 
@@ -31,6 +31,9 @@ public class ArrayQueue<T> {
         return array.getSize();
     }
 
+    public boolean isEmpty(){
+        return array.isEmpty();
+    }
     public int getCapacity(){
         return array.getCapacity();
     }

@@ -4,12 +4,12 @@ package com.ljf.datastructure;
  * @author liujufu
  * @date 2019/2/24 19:10
  */
-public class Array<T> {
-    private T[] data;
+public class Array<E> {
+    private E[] data;
     private int size;
 
     public Array(int capacity){
-        data = (T[])new Object[capacity];
+        data = (E[])new Object[capacity];
         size=0;
     }
 
@@ -29,7 +29,7 @@ public class Array<T> {
         return size==0;
     }
 
-    public void add(int index,T e){
+    public void add(int index,E e){
 
         if(index<0 || index>size){
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size");
@@ -45,40 +45,40 @@ public class Array<T> {
     }
 
     public void resize(int newCapacity){
-        T[] arr =(T[])new Object[newCapacity];
+        E[] arr =(E[])new Object[newCapacity];
         for(int i=0;i<size;i++){
             arr[i]=data[i];
         }
         data=arr;
     }
 
-    public void addFirst(T e){
+    public void addFirst(E e){
         add(0,e);
     }
 
-    public void addLast(T e){
+    public void addLast(E e){
         add(size,e);
     }
 
-    public T get(int index){
+    public E get(int index){
         if(index<0 || index>=size){
             throw new IllegalArgumentException("Index is illegal");
         }
         return data[index];
     }
 
-    public T getLast(){
+    public E getLast(){
         return get(size-1);
     }
 
-    public void set(int index,T e){
+    public void set(int index,E e){
         if(index<0 || index>=size){
             throw new IllegalArgumentException("Index is illegal");
         }
         data[index]=e;
     }
 
-    public boolean contains(T e){
+    public boolean contains(E e){
         for(int i=0;i<size;i++){
             if(data[i].equals(e)){
                 return true;
@@ -87,7 +87,7 @@ public class Array<T> {
         return false;
     }
 
-    public int find(T e){
+    public int find(E e){
         for(int i=0;i<size;i++){
             if(data[i].equals(e)){
                 return i;
@@ -96,10 +96,11 @@ public class Array<T> {
         return -1;
     }
 
-    public void remove(int index){
+    public E remove(int index){
         if(index<0 || index>=size){
             throw new IllegalArgumentException("Index is illegal");
         }
+        E e= data[index];
         for(int i=index;i<size-1;i++){
             data[i]=data[i+1];
         }
@@ -107,13 +108,14 @@ public class Array<T> {
         if(size==data.length/4 && data.length/2!=0){
             resize(data.length/2);
         }
+        return e;
     }
 
-    public void removeLast(){
-        remove(size-1);
+    public E removeLast(){
+        return remove(size-1);
     }
 
-    public void removeElement(T e){
+    public void removeElement(E e){
         int index = find(e);
         if(index!=-1){
             remove(index);
